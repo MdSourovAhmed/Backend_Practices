@@ -1,0 +1,16 @@
+// Add this file for auth middleware
+const jwt = require('jsonwebtoken');
+
+module.exports = (req, res, next) => {
+  const token = req.header('Authorization')?.split(' ')[1];
+  if (!token) return res.status(401).json({ message: 'No token' });
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    console.log('Verified');
+    next();
+  } catch (err) {
+    console.log('not Verified');
+    res.status(401).json({ message: 'Invalid token' });
+  }
+};
