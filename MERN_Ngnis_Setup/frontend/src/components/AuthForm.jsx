@@ -3,8 +3,6 @@ import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
-// console.log(api);
-
 const AuthForm = ({ type }) => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', secondaryEmail: '' });
   const [error, setError] = useState(null);
