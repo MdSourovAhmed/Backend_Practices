@@ -12,11 +12,11 @@ RUN npm ci
 COPY ./frontend/ .
 
 # Create non-root user for security (optional but recommended)
-# RUN addgroup -g 1001 -S nodejs && \
-#     adduser -S sourov -u 1001 && \
-#     chown -R sourov:nodejs /app && \
-#     chown -R sourov:nodejs /root/.npm
-# USER sourov
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S sourov -u 1001 && \
+    chown -R sourov:nodejs /app && \
+    chown -R sourov:nodejs /root/.npm
+USER sourov
 
 # Start dev server
 CMD ["npm", "run", "dev"]
